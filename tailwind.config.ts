@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
 	darkMode: ["class"],
@@ -52,22 +53,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        // Added based on PRD naming for direct use in Tailwind classes
+        primaryText: 'hsl(var(--card-foreground))', // Maps to PRD 'primaryText' which is on the card
+        secondaryText: 'hsl(var(--muted-foreground))', // Maps to PRD 'secondaryText'
+        buttonBackground: 'hsl(var(--primary))', // Maps to PRD 'buttonBackground'
+        buttonText: 'hsl(var(--primary-foreground))' // Maps to PRD 'buttonText'
+        // Removed 'sidebar' color object as its CSS variables were removed from index.css
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: 'var(--radius)', // Will be 0.375rem (6px) due to --radius update
+				md: 'calc(var(--radius) - 2px)', // Will be 4px
+				sm: 'calc(var(--radius) - 4px)' // Will be 2px
 			},
+      fontFamily: {
+        sans: ["sans-serif", ...fontFamily.sans], // Explicitly set primaryFont from PRD and fallback
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
